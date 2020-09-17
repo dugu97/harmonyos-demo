@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout xmlns:ohos="http://schemas.huawei.com/res/ohos"
+                   ohos:width="match_parent"
+                   ohos:height="match_parent"
+                   ohos:orientation="vertical">
+
+    <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:weight="1"
+            ohos:orientation="horizontal">
+
+        <Button
+                ohos:id="$+id:jump_main"
+                ohos:width="match_content"
+                ohos:height="match_parent"
+                ohos:text="跳转FirstAbility"
+                ohos:text_alignment="center"
+                ohos:weight="1"
+                ohos:margin="5vp"
+                ohos:auto_font_size="true"
+                ohos:background_element="$graphic:button_element"/>
+
+        <Button
+                ohos:width="match_content"
+                ohos:height="match_content"
+                ohos:weight="1"
+                ohos:margin="5vp"/>
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:weight="1"
+            ohos:orientation="horizontal">
+
+        <Button
+                ohos:id="$+id:start_service"
+                ohos:width="match_content"
+                ohos:height="match_parent"
+                ohos:weight="1"
+                ohos:margin="5vp"
+                ohos:text="启动Service"
+                ohos:text_alignment="center"
+                ohos:background_element="$graphic:button_element"
+                ohos:auto_font_size="true"/>
+
+        <Button
+                ohos:id="$+id:stop_service"
+                ohos:width="match_content"
+                ohos:height="match_parent"
+                ohos:weight="1"
+                ohos:text="停止Service"
+                ohos:margin="5vp"
+                ohos:text_alignment="center"
+                ohos:background_element="$graphic:button_element"
+                ohos:auto_font_size="true"/>
+
+    </DirectionalLayout>
+
+    <DirectionalLayout
+            ohos:width="match_parent"
+            ohos:height="match_content"
+            ohos:weight="1"
+            ohos:orientation="horizontal">
+
+        <Button
+                ohos:id="$+id:connect_service"
+                ohos:width="match_content"
+                ohos:height="match_parent"
+                ohos:margin="5vp"
+                ohos:weight="1"
+                ohos:text="连接Service"
+                ohos:text_alignment="center"
+                ohos:background_element="$graphic:button_element"
+                ohos:auto_font_size="true"/>
+
+        <Button
+                ohos:id="$+id:disconnect_service"
+                ohos:width="match_content"
+                ohos:height="match_parent"
+                ohos:weight="1"
+                ohos:text="断连Service"
+                ohos:margin="5vp"
+                ohos:text_alignment="center"
+                ohos:background_element="$graphic:button_element"
+                ohos:auto_font_size="true"/>
+
+    </DirectionalLayout>
+
+</DirectionalLayout>

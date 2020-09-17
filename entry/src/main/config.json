@@ -1,0 +1,76 @@
+{
+  "app": {
+    "bundleName": "com.example.myapplication",
+    "vendor": "example",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 3
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.myapplication",
+    "name": ".MyApplication",
+    "reqCapabilities": [
+      "video_support"
+    ],
+    "deviceType": [
+      "tv","wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "action": "$String:news_detail_action",
+        "orientation": "landscape",
+        "formEnabled": false,
+        "permissions": [],
+        "name": "com.example.myapplication.FirstAbility",
+        "icon": "$media:icon",
+        "description": "$string:firstability_description",
+        "label": "MyApplication",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "landscape",
+        "formEnabled": false,
+        "permissions": [],
+        "name": "com.example.myapplication.SecondAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": "com.example.myapplication.service.ServiceAbility",
+        "type": "service",
+        "visible": true
+      },
+      {
+        "name": "com.example.myapplication.data.NewsDataAbility",
+        "type": "data",
+        "visible": true,
+        "uri": "dataability://com.example.myapplication.NewsDataAbility",
+        "permissions": [
+          "com.example.myapplication.DataAbility.DATA"
+        ]
+      }
+    ]
+  }
+}

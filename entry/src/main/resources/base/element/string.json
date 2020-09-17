@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MyApplication"
+    },
+    {
+      "name": "firstability_description",
+      "value": "hap sample empty page"
+    },
+    {
+      "name": "news_content",
+      "value": "新闻内容：生产转基因蚊子有多种技术手段，其中一种是研发时间较长、应用得比较广泛的技术，称为昆虫显性致死释放技术。牛津昆虫技术公司在2007年就成功研发出转基因蚊，在后来的几年中陆续进行了野外投放试验，收到了良好的较果，但也引发了争议。"
+    },
+    {
+      "name": "news_detail_action",
+      "value": "news.detail"
+    }
+  ]
+}
