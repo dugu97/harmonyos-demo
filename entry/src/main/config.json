@@ -48,7 +48,12 @@
         "description": "$string:firstability_description",
         "label": "MyApplication",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "reqPermissions": [
+          {
+            "name": "com.example.myapplication5.DataAbility.DATA"
+          }
+        ]
       },
       {
         "orientation": "landscape",

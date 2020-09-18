@@ -56,7 +56,6 @@ public class NewsDataAbility extends Ability {
 
     @Override
     public int insert(Uri uri, ValuesBucket value) {
-        LogUtil.debugInfo("A4");
         // 参数校验
         if (ormContext == null) {
             LogUtil.dataInfo("failed to insert, ormContext is null");
@@ -75,7 +74,6 @@ public class NewsDataAbility extends Ability {
         news.setTitle(value.getString("title"));
         news.setContent(value.getString("content"));
 
-        LogUtil.debugInfo("A5");
         // 插入数据库
         boolean isSuccessed = true;
         isSuccessed = ormContext.insert(news);
