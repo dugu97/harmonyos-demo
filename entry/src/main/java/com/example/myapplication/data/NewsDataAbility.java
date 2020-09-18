@@ -22,11 +22,12 @@ import java.util.regex.Pattern;
 
 public class NewsDataAbility extends Ability {
 
-    private static final String DATABASE_NAME ="NewsDataAbility.db";
-    private static final String DATABASE_NAME_ALIAS = "NewsDataAbility";
+    public static final String DATABASE_NAME ="NewsDataAbility.db";
+    public static final String DATABASE_NAME_ALIAS = "NewsDataAbility";
     private OrmContext ormContext = null;
 
-    private final Pattern pattern = Pattern.compile("dataability://com.example.myapplication.NewsDataAbility");
+    public final static String AUTHORITY = "dataability://com.example.myapplication.NewsDataAbility";
+    private final Pattern pattern = Pattern.compile(AUTHORITY);
 
     @Override
     protected void onStart(Intent intent) {
@@ -55,6 +56,7 @@ public class NewsDataAbility extends Ability {
 
     @Override
     public int insert(Uri uri, ValuesBucket value) {
+        LogUtil.debugInfo("A4");
         // 参数校验
         if (ormContext == null) {
             LogUtil.dataInfo("failed to insert, ormContext is null");
@@ -73,6 +75,7 @@ public class NewsDataAbility extends Ability {
         news.setTitle(value.getString("title"));
         news.setContent(value.getString("content"));
 
+        LogUtil.debugInfo("A5");
         // 插入数据库
         boolean isSuccessed = true;
         isSuccessed = ormContext.insert(news);
@@ -89,4 +92,5 @@ public class NewsDataAbility extends Ability {
         int id = Math.toIntExact(news.getRowId());
         return id;
     }
+
 }

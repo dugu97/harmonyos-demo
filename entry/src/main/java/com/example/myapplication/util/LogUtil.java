@@ -13,6 +13,7 @@ public class LogUtil {
     private final static String LIFECYCLE_INFO = "lifecycle";
     private final static String SERVICE_INFO = "service";
     private final static String DATA_ABILITY_INFO = "dataAbility";
+    private final static String DEBUG_INFO = "mydebug";
 
     public static void info(String tag, String meg){
         Logger.getLogger(Level.INFO.getName()).info(tag + ":" + meg);
@@ -32,5 +33,9 @@ public class LogUtil {
 
     public static void dataInfo(String meg){
         Logger.getLogger(Level.INFO.getName()).info(DATA_ABILITY_INFO  + ":" + meg);
+    }
+
+    public static void debugInfo(String meg){
+        Logger.getLogger(Level.INFO.getName()).info(DEBUG_INFO  + ":" + meg);
     }
 }

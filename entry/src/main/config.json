@@ -19,7 +19,8 @@
       "video_support"
     ],
     "deviceType": [
-      "tv","wearable"
+      "tv",
+      "wearable"
     ],
     "distro": {
       "deliveryWithInstall": true,

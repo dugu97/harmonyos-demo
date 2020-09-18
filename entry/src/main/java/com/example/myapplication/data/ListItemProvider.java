@@ -2,6 +2,7 @@ package com.example.myapplication.data;
 
 import com.example.myapplication.ResourceTable;
 
+import com.example.myapplication.data.db.News;
 import com.example.myapplication.slice.NewsDetailAbilitySlice;
 import com.example.myapplication.util.LogUtil;
 import ohos.aafwk.ability.AbilitySlice;
@@ -13,19 +14,22 @@ import ohos.agp.components.RecycleItemProvider;
 import ohos.agp.components.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ListItemProvider extends RecycleItemProvider {
-    private ArrayList<String> data = new ArrayList<>();
+
+    private List<News> news = new ArrayList<>();
     private AbilitySlice mSlice;
 
     ListItemProvider(AbilitySlice abilitySlice) {
         mSlice = abilitySlice;
-        for (int i = 0; i < 10; ++i) {
-            data.add("新闻title" + i);
-            data.add("新闻preview" + i);
-        }
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
+        notifyDataChanged();
     }
 
     @Override
@@ -35,7 +39,7 @@ public class ListItemProvider extends RecycleItemProvider {
 
     @Override
     public int getCount() {
-        return data.size();
+        return news.size();
     }
 
     @Override
@@ -46,9 +50,9 @@ public class ListItemProvider extends RecycleItemProvider {
         }
         ComponentContainer rootLayout = (ComponentContainer) component;
         Text titleText = (Text) rootLayout.findComponentById(ResourceTable.Id_news_title);
-        titleText.setText(data.get(position * 2));
+        titleText.setText(news.get(position).getTitle());
         Text previewText = (Text) rootLayout.findComponentById(ResourceTable.Id_news_preview);
-        previewText.setText(data.get(position * 2 + 1));
+        previewText.setText(news.get(position).getContent());
         rootLayout.setClickedListener(new Component.ClickedListener() {
             @Override
             public void onClick(Component component) {

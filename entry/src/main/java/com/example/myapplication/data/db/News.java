@@ -1,6 +1,7 @@
 package com.example.myapplication.data.db;
 
 import ohos.data.orm.OrmObject;
+import ohos.data.orm.annotation.Column;
 import ohos.data.orm.annotation.Entity;
 import ohos.data.orm.annotation.PrimaryKey;
 
@@ -9,7 +10,9 @@ public class News extends OrmObject {
     @PrimaryKey(autoGenerate = true)
     private Integer newsId;
 
+    @Column(name = "title")
     private String title;
+    @Column(name = "content")
     private String content;
 
     public Integer getNewsId() {

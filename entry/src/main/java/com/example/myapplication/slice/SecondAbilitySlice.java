@@ -11,6 +11,8 @@ import ohos.agp.components.Component;
 import ohos.bundle.ElementName;
 import ohos.rpc.IRemoteObject;
 
+import static com.example.myapplication.service.ServiceAbility.getServiceAbilityIntentInLocal;
+
 public class SecondAbilitySlice extends AbilitySlice implements Component.ClickedListener {
 
     private final String TAG = "SecondAbilitySlice";
@@ -137,14 +139,4 @@ public class SecondAbilitySlice extends AbilitySlice implements Component.Clicke
         disconnectAbility(serviceConnect);
     }
 
-    private Intent getServiceAbilityIntentInLocal(){
-        Intent intent = new Intent();
-        Operation operation = new Intent.OperationBuilder()
-                .withDeviceId("")
-                .withBundleName("com.example.myapplication")
-                .withAbilityName("com.example.myapplication.service.ServiceAbility")
-                .build();
-        intent.setOperation(operation);
-        return intent;
-    }
 }

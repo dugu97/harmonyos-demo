@@ -36,6 +36,7 @@
                 ohos:height="match_content"
                 ohos:text_alignment="center"
                 ohos:text_size="15fp"
+                ohos:ellipsize="end"
                 ohos:text="right"/>
 
     </DirectionalLayout>

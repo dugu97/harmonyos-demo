@@ -15,6 +15,7 @@ import ohos.data.dataability.DataAbilityPredicates;
 import ohos.hiviewdfx.Debug;
 import ohos.hiviewdfx.HiLog;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,5 +44,9 @@ public class ListHolder {
         listContainer = (ListContainer) mRootLayout.findComponentById(ResourceTable.Id_list);
         listContainer.setItemProvider(listItemProvider);
         return mRootLayout;
+    }
+
+    public ListContainer getListContainer() {
+        return listContainer;
     }
 }

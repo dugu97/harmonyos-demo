@@ -1,9 +1,13 @@
 package com.example.myapplication.service;
 
+import com.example.myapplication.data.NewsDataAbility;
+import com.example.myapplication.data.NewsDataUtil;
 import com.example.myapplication.util.LogUtil;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
+import ohos.aafwk.content.Operation;
 import ohos.rpc.IRemoteObject;
+import ohos.utils.net.Uri;
 
 public class ServiceAbility extends Ability {
 
@@ -26,7 +30,6 @@ public class ServiceAbility extends Ability {
     protected IRemoteObject onConnect(Intent intent) {
         LogUtil.serviceInfo(TAG, "onConnect()");
         return super.onConnect(intent);
-
     }
 
     @Override
@@ -46,5 +49,16 @@ public class ServiceAbility extends Ability {
     protected void onStop() {
         super.onStop();
         LogUtil.serviceInfo(TAG, "onStop()");
+    }
+
+    public static Intent getServiceAbilityIntentInLocal(){
+        Intent intent = new Intent();
+        Operation operation = new Intent.OperationBuilder()
+                .withDeviceId("")
+                .withBundleName("com.example.myapplication")
+                .withAbilityName("com.example.myapplication.service.ServiceAbility")
+                .build();
+        intent.setOperation(operation);
+        return intent;
     }
 }
