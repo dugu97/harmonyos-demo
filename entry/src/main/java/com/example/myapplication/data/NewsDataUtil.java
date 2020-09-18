@@ -18,14 +18,14 @@ import java.util.List;
 
 public class NewsDataUtil {
 
-    public static List<News> queryNews(OrmContext context, Uri uri) {
+    public static List<News> queryNews(OrmContext context) {
         OrmPredicates query = context.where(News.class);
         List<News> news = context.query(query);
 
         return news;
     }
 
-    public static void insertNews(OrmContext context, Uri uri) {
+    public static void insertNews(OrmContext context) {
         News news = new News();
         news.setTitle("新闻标题");
         news.setContent("新闻内容");

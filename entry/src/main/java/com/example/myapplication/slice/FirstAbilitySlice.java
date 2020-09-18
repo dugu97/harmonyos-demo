@@ -26,10 +26,10 @@ public class FirstAbilitySlice extends AbilitySlice {
 
         startAbility(ServiceAbility.getServiceAbilityIntentInLocal());
 
-        NewsDataUtil.insertNews(MyApplication.getOrmContext(), Uri.parse(NewsDataAbility.AUTHORITY));
+        NewsDataUtil.insertNews(MyApplication.getOrmContext());
 
         ListItemProvider itemProvider = (ListItemProvider) listHolder.getListContainer().getItemProvider();
-        itemProvider.setNews(NewsDataUtil.queryNews(MyApplication.getOrmContext(), Uri.parse(NewsDataAbility.AUTHORITY)));
+        itemProvider.setNews(NewsDataUtil.queryNews(MyApplication.getOrmContext()));
     }
 
     @Override
