@@ -31,12 +31,12 @@ public class MyApplication extends AbilityPackage implements AbilityLifecycleCal
 
     @Override
     public void onAbilityStart(Ability ability) {
-        LogUtil.lifeCycleInfo(ability.getLocalClassName(), "onStart()");
         //ability.getLocalClassName()为空时是data模板的初始化
         if (ability.getLocalClassName() == null){
-            LogUtil.lifeCycleInfo(ability.getBundleResourcePath(),"onStart(null)");
             LogUtil.lifeCycleInfo(ability.getAbilityInfo().getOriginalClassName(),"onStart(null)");
+            return;
         }
+        LogUtil.lifeCycleInfo(ability.getLocalClassName(), "onStart()");
     }
 
     @Override

@@ -41,7 +41,10 @@
             ]
           }
         ],
-        "action": ["$String:news_detail_action", "news_List_action"],
+        "action": [
+          "$String:news_detail_action",
+          "news_List_action"
+        ],
         "orientation": "landscape",
         "formEnabled": false,
         "permissions": [],
@@ -71,6 +74,12 @@
         "type": "data",
         "visible": true,
         "uri": "dataability://com.example.myapplication.data.NewsDataAbility"
+      },
+      {
+        "name": "com.example.myapplication.ServiceAbility",
+        "icon": "$media:icon",
+        "description": "$string:serviceability_description",
+        "type": "service"
       }
     ]
   }

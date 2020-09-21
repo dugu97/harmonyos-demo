@@ -27,6 +27,8 @@ public class NewsDataAbility extends Ability {
     public static final String DATABASE_NAME ="NewsDataAbility.db";
     public static final String DATABASE_NAME_ALIAS = "NewsDataAbility";
 
+    public static final String TAG = "NewsDataAbility";
+
     private static OrmContext ormContext = null;
 
     /**
@@ -53,7 +55,7 @@ public class NewsDataAbility extends Ability {
     @Override
     public ResultSet query(Uri uri, String[] columns, DataAbilityPredicates predicates) {
         if (ormContext == null) {
-            LogUtil.dataInfo("failed to query, ormContext is null");
+            LogUtil.dataInfo(TAG,"failed to query, ormContext is null");
             return null;
         }
 
@@ -61,7 +63,7 @@ public class NewsDataAbility extends Ability {
         OrmPredicates ormPredicates = DataAbilityUtils.createOrmPredicates(predicates, News.class);
         ResultSet resultSet = ormContext.query(ormPredicates, columns);
         if (resultSet == null) {
-            LogUtil.dataInfo("resultSet is null");
+            LogUtil.dataInfo(TAG,"resultSet is null");
         }
 
         // 返回结果
@@ -72,13 +74,13 @@ public class NewsDataAbility extends Ability {
     public int insert(Uri uri, ValuesBucket value) {
         // 参数校验
         if (ormContext == null) {
-            LogUtil.dataInfo("failed to insert, ormContext is null");
+            LogUtil.dataInfo(TAG,"failed to insert, ormContext is null");
             return -1;
         }
 
         Matcher matcher = pattern.matcher(uri.toString());
         if (!matcher.lookingAt()) {
-            LogUtil.dataInfo("NewsDataAbility insert uri is not matched");
+            LogUtil.dataInfo(TAG,"NewsDataAbility insert uri is not matched");
             return -1;
         }
 
@@ -92,12 +94,12 @@ public class NewsDataAbility extends Ability {
         boolean isSuccessed = true;
         isSuccessed = ormContext.insert(news);
         if (!isSuccessed) {
-            LogUtil.dataInfo("failed to insert");
+            LogUtil.dataInfo(TAG,"failed to insert");
             return -1;
         }
         isSuccessed = ormContext.flush();
         if (!isSuccessed) {
-            LogUtil.dataInfo("failed to insert flush");
+            LogUtil.dataInfo(TAG,"failed to insert flush");
             return -1;
         }
         DataAbilityHelper.creator(this, uri).notifyChange(uri);

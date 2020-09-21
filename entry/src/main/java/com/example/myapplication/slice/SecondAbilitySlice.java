@@ -10,6 +10,7 @@ import ohos.agp.components.Button;
 import ohos.agp.components.Component;
 import ohos.bundle.ElementName;
 import ohos.rpc.IRemoteObject;
+import ohos.utils.net.Uri;
 
 import static com.example.myapplication.service.ServiceAbility.getServiceAbilityIntentInLocal;
 
@@ -86,7 +87,8 @@ public class SecondAbilitySlice extends AbilitySlice implements Component.Clicke
     public void onClick(Component component) {
         switch (component.getId()) {
             case ResourceTable.Id_jump_main:
-                jumpFirstAbility();
+//                jumpFirstAbility();
+                jumpJsAbility();
                 break;
             case ResourceTable.Id_start_service:
                 LogUtil.clickInfo("启动Service");
@@ -122,6 +124,24 @@ public class SecondAbilitySlice extends AbilitySlice implements Component.Clicke
         secondIntent.setOperation(operation);
         startAbility(secondIntent); // 通过AbilitySlice的startAbility接口实现启动另一个页面
         LogUtil.clickInfo("跳转-FirstAbility-新闻模块");
+    }
+
+    private void jumpJsAbility(){
+        LogUtil.debugInfo("A");
+        Intent secondIntent = new Intent();
+        // 指定待启动FA的bundleName和abilityName
+        Operation operation = new Intent.OperationBuilder()
+                .withDeviceId("")
+//                .withBundleName("com.example.myapplication2")
+//                .withAbilityName("com.example.myapplication2.MainAbility")
+//                .withAction("action.myJs.main")
+                .withUri(Uri.parse("pages/index/index"))
+                .build();
+        secondIntent.setOperation(operation);
+        LogUtil.debugInfo("B");
+        startAbility(secondIntent); // 通过AbilitySlice的startAbility接口实现启动另一个页面
+        LogUtil.debugInfo("c");
+        LogUtil.clickInfo("跳转-MainAbility-JS模块");
     }
 
     private void startService(){
