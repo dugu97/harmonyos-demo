@@ -21,7 +21,6 @@ public class NewsDataUtil {
     public static List<News> queryNews(OrmContext context) {
         OrmPredicates query = context.where(News.class);
         List<News> news = context.query(query);
-
         return news;
     }
 
@@ -33,25 +32,22 @@ public class NewsDataUtil {
         isSuccessed = context.flush();
     }
 
-    public static void insertNewsWithDataModel(Context context, Uri uri) {
-        DataAbilityHelper helper = DataAbilityHelper.creator(context);
+    public static void insertNewsWithDataModel(DataAbilityHelper helper, Uri uri) {
         // 构造插入数据
         ValuesBucket valuesBucket = new ValuesBucket();
         valuesBucket.putInteger("newsId", 0);
         valuesBucket.putString("title", "新闻标题");
         valuesBucket.putString("content", "新闻内容");
         try {
-            LogUtil.debugInfo("A3");
             helper.insert(uri, valuesBucket);
         } catch (DataAbilityRemoteException e) {
+            LogUtil.debugInfo(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public static List<News> queryNewsWithDataModel(Context context, Uri uri) {
+    public static List<News> queryNewsWithDataModel(DataAbilityHelper helper, Uri uri) {
         List<News> dataList = new ArrayList<>();
-        DataAbilityHelper helper = DataAbilityHelper.creator(context);
-
         // 构造查询条件
 //        DataAbilityPredicates predicates = new DataAbilityPredicates();
 //        predicates.between("userId", 101, 103);

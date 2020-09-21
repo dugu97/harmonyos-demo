@@ -35,11 +35,13 @@
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "action.system.home",
+              "$String:news_detail_action",
+              "news_List_action"
             ]
           }
         ],
-        "action": "$String:news_detail_action",
+        "action": ["$String:news_detail_action", "news_List_action"],
         "orientation": "landscape",
         "formEnabled": false,
         "permissions": [],
@@ -48,17 +50,13 @@
         "description": "$string:firstability_description",
         "label": "MyApplication",
         "type": "page",
-        "launchType": "standard",
-        "reqPermissions": [
-          {
-            "name": "com.example.myapplication5.DataAbility.DATA"
-          }
-        ]
+        "launchType": "singleton"
       },
       {
         "orientation": "landscape",
         "formEnabled": false,
         "permissions": [],
+        "description": "secondability_description",
         "name": "com.example.myapplication.SecondAbility",
         "type": "page",
         "launchType": "standard"
@@ -72,10 +70,7 @@
         "name": "com.example.myapplication.data.NewsDataAbility",
         "type": "data",
         "visible": true,
-        "uri": "dataability://com.example.myapplication.NewsDataAbility",
-        "permissions": [
-          "com.example.myapplication.DataAbility.DATA"
-        ]
+        "uri": "dataability://com.example.myapplication.data.NewsDataAbility"
       }
     ]
   }

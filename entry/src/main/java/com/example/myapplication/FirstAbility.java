@@ -15,5 +15,6 @@ public class FirstAbility extends Ability {
         super.onStart(intent);
         super.setMainRoute(FirstAbilitySlice.class.getName());
         addActionRoute("$String:news_detail_action", NewsDetailAbilitySlice.class.getName());
+        addActionRoute("news_List_action", FirstAbilitySlice.class.getName());
     }
 }

@@ -2,11 +2,13 @@ package com.example.myapplication.data;
 
 import com.example.myapplication.data.db.News;
 import com.example.myapplication.data.db.NewsStore;
+import com.example.myapplication.service.NewsDataProducer;
 import com.example.myapplication.util.LogUtil;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.ability.DataAbilityHelper;
 import ohos.aafwk.ability.DataAbilityRemoteException;
 import ohos.aafwk.content.Intent;
+import ohos.backgroundtaskmgr.BackgroundTaskManager;
 import ohos.data.DatabaseHelper;
 import ohos.data.dataability.DataAbilityPredicates;
 import ohos.data.dataability.DataAbilityUtils;
@@ -24,16 +26,28 @@ public class NewsDataAbility extends Ability {
 
     public static final String DATABASE_NAME ="NewsDataAbility.db";
     public static final String DATABASE_NAME_ALIAS = "NewsDataAbility";
-    private OrmContext ormContext = null;
 
-    public final static String AUTHORITY = "dataability://com.example.myapplication.NewsDataAbility";
+    private static OrmContext ormContext = null;
+
+    /**
+     * 此处的URI不是使用config.json里面NewsDataAbility配置的URi
+     */
+    public final static String AUTHORITY = "dataability:///com.example.myapplication.data.NewsDataAbility";
     private final Pattern pattern = Pattern.compile(AUTHORITY);
+
+    public static OrmContext getOrmContext() {
+        return ormContext;
+    }
 
     @Override
     protected void onStart(Intent intent) {
         super.onStart(intent);
-        DatabaseHelper manager = new DatabaseHelper(this);
-        ormContext = manager.getOrmContext(DATABASE_NAME_ALIAS, DATABASE_NAME, NewsStore.class);
+        DatabaseHelper helper = new DatabaseHelper(this);
+        ormContext = helper.getOrmContext(DATABASE_NAME_ALIAS, DATABASE_NAME, NewsStore.class);
+
+        //插入相关的新闻数据
+        NewsDataProducer producer = new NewsDataProducer(getApplicationContext());
+        producer.run();
     }
 
     @Override
@@ -90,5 +104,6 @@ public class NewsDataAbility extends Ability {
         int id = Math.toIntExact(news.getRowId());
         return id;
     }
+
 
 }

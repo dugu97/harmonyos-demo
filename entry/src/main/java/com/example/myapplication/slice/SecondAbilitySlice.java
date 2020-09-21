@@ -116,7 +116,8 @@ public class SecondAbilitySlice extends AbilitySlice implements Component.Clicke
                 .withDeviceId("")
                 .withBundleName("com.example.myapplication")
                 .withAbilityName("com.example.myapplication.FirstAbility")
-//                        .withAction("$String:news_detail_action")
+                        .withAction("$String:news_detail_action")
+//                .withAction("news_List_action")
                 .build();
         secondIntent.setOperation(operation);
         startAbility(secondIntent); // 通过AbilitySlice的startAbility接口实现启动另一个页面

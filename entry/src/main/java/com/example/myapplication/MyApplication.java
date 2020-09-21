@@ -8,6 +8,7 @@ import com.example.myapplication.util.LogUtil;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.ability.AbilityLifecycleCallbacks;
 import ohos.aafwk.ability.AbilityPackage;
+import ohos.aafwk.ability.DataAbilityHelper;
 import ohos.app.Context;
 import ohos.app.ElementsCallback;
 import ohos.bluetooth.BluetoothDeviceClass;
@@ -21,23 +22,21 @@ import static com.example.myapplication.data.NewsDataAbility.DATABASE_NAME_ALIAS
 
 public class MyApplication extends AbilityPackage implements AbilityLifecycleCallbacks{
 
-    private static OrmContext ormContext;
-
-    public static OrmContext getOrmContext() {
-        return ormContext;
-    }
 
     @Override
     public void onInitialize() {
         super.onInitialize();
-        DatabaseHelper helper = new DatabaseHelper(this); // context入参类型为ohos.app.Context，注意不要使用slice.getContext()来获取context，请直接传入slice，否则会出现找不到类的报错。
-        ormContext = helper.getOrmContext(DATABASE_NAME_ALIAS, DATABASE_NAME, NewsStore.class);
         registerCallbacks(this, null);
     }
 
     @Override
     public void onAbilityStart(Ability ability) {
         LogUtil.lifeCycleInfo(ability.getLocalClassName(), "onStart()");
+        //ability.getLocalClassName()为空时是data模板的初始化
+        if (ability.getLocalClassName() == null){
+            LogUtil.lifeCycleInfo(ability.getBundleResourcePath(),"onStart(null)");
+            LogUtil.lifeCycleInfo(ability.getAbilityInfo().getOriginalClassName(),"onStart(null)");
+        }
     }
 
     @Override
