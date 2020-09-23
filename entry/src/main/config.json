@@ -9,7 +9,8 @@
     "apiVersion": {
       "compatible": 3,
       "target": 3
-    }
+    },
+    "js": {}
   },
   "deviceConfig": {},
   "module": {
@@ -88,7 +89,7 @@
     "js": [
       {
         "pages": [
-          "pages/index/index"
+          "pages/news/news"
         ],
         "name": "default",
         "window": {

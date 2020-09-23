@@ -4,22 +4,62 @@ import com.example.myapplication.data.ListHolder;
 import com.example.myapplication.data.ListItemProvider;
 import com.example.myapplication.data.NewsDataAbility;
 import com.example.myapplication.data.NewsDataUtil;
+import com.example.myapplication.data.db.News;
 import com.example.myapplication.service.ServiceAbility;
 import com.example.myapplication.util.LogUtil;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.ability.DataAbilityHelper;
 import ohos.aafwk.content.Intent;
 import ohos.event.commonevent.*;
+import ohos.eventhandler.EventHandler;
+import ohos.eventhandler.EventRunner;
+import ohos.eventhandler.InnerEvent;
 import ohos.rpc.RemoteException;
 import ohos.utils.net.Uri;
+
+import java.util.List;
 
 public class FirstAbilitySlice extends AbilitySlice {
 
     private final String TAG = "FirstAbilitySlice";
 
+    public static final int CODE_QUERY_FINISH = 2;
+
+
     private ListHolder listHolder;
+    private List<News> newsList;
 
     private MyCommonEventSubscriber subscriber;
+
+    EventRunner runnerA = EventRunner.create("queryRunner"); // 内部会新建一个线程
+    private MyEventHandler handler;
+
+    public class MyEventHandler extends EventHandler {
+        private MyEventHandler(EventRunner runner) {
+            super(runner);
+        }
+
+        @Override
+        public void processEvent(InnerEvent event) {
+            super.processEvent(event);
+            if (event == null) {
+                return;
+            }
+
+            int eventId = event.eventId;
+
+            switch (eventId) {
+                case CODE_QUERY_FINISH:
+                    ListItemProvider itemProvider = (ListItemProvider) listHolder.getListContainer().getItemProvider();
+                    if (newsList != null) {
+                        itemProvider.setNews(newsList);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     @Override
     public void onStart(Intent intent) {
@@ -27,6 +67,8 @@ public class FirstAbilitySlice extends AbilitySlice {
         LogUtil.lifeCycleInfo(TAG, "onStart()");
         listHolder = new ListHolder(this);
         setUIContent(listHolder.createComponent());
+
+        handler = new MyEventHandler(runnerA);
 
         registerCommonEvent();
 
@@ -107,11 +149,20 @@ public class FirstAbilitySlice extends AbilitySlice {
 
         @Override
         public void onReceiveEvent(CommonEventData commonEventData) {
-            new Thread(() -> {
-                ListItemProvider itemProvider = (ListItemProvider) listHolder.getListContainer().getItemProvider();
-                itemProvider.setNews(NewsDataUtil.queryNews(NewsDataAbility.getOrmContext()));
-//                itemProvider.setNews(NewsDataUtil.queryNewsWithDataModel(DataAbilityHelper.creator(getApplicationContext()), Uri.parse(NewsDataAbility.AUTHORITY)));
-            }).run();
+
+            handler.postTask(new Runnable() {
+                @Override
+                public void run() {
+                    newsList = NewsDataUtil.queryNews(NewsDataAbility.getOrmContext());
+                    handler.sendEvent(CODE_QUERY_FINISH);
+                }
+            });
+
+//            new Thread(() -> {
+//                ListItemProvider itemProvider = (ListItemProvider) listHolder.getListContainer().getItemProvider();
+//                itemProvider.setNews(NewsDataUtil.queryNews(NewsDataAbility.getOrmContext()));
+////                itemProvider.setNews(NewsDataUtil.queryNewsWithDataModel(DataAbilityHelper.creator(getApplicationContext()), Uri.parse(NewsDataAbility.AUTHORITY)));
+//            }).run();
         }
     }
 

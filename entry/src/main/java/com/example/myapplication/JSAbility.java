@@ -6,7 +6,6 @@ import ohos.ace.ability.AceAbility;
 public class JSAbility extends AceAbility {
     @Override
     public void onStart(Intent intent) {
-        setInstanceName("default");
         super.onStart(intent);
     }
 
