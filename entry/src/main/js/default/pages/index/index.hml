@@ -54,7 +54,7 @@
     </div>
     <div class="content_img">
         <div class="img-box">
-            <image class="img-img" src=""></image>
+            <image class="img-img" src="/common/food_001.jpg"></image>
         </div>
         <div class="text_box">
             <text class="img-text">{{$t('strings.img-text')}}

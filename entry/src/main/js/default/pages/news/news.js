@@ -1,8 +1,11 @@
+import router from '@system.router';
 export default {
     data: {
         cartText: 'Add To Cart',
         cartStyle: 'cart-text',
         isCartEmpty: true,
+        jumpText: '演示路由跳转',
+        cartStyle1: 'cart-text',
         descriptionFirstParagraph: 'This is the food page including fresh fruit, meat, snack and etc. You can pick whatever you like and add it to your Cart. Your order will arrive within 48 hours. We gurantee that our food is organic and healthy. Feel free to ask our 24h online service to explore more about our platform and products.',
         imageList: ['/common/food_000.jpg', '/common/food_001.jpg', '/common/food_002.jpg', '/common/food_003.jpg'],
     },
@@ -21,6 +24,13 @@ export default {
             this.cartStyle = 'cart-text'
             this.isCartEmpty = true;
         }
+    },
+
+    jumpIndex(){
+        router.push({
+            uri: 'pages/index/index'
+        })
+        console.info('跳转到 pages/index/index');
     },
 
     getFocus() {

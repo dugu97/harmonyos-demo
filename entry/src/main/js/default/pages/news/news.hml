@@ -24,5 +24,8 @@
         <text class="{{cartStyle}}" onclick="addCart" onfocus="getFocus" onblur="lostFocus" focusable="true">
             {{cartText}}
         </text>
+        <text class="{{cartStyle1}}" onclick="jumpIndex" focusable="true">
+            {{jumpText}}
+        </text>
     </div>
 </div>

@@ -130,7 +130,6 @@ public class SecondAbilitySlice extends AbilitySlice implements Component.Clicke
     }
 
     private void jumpJsAbility() {
-        LogUtil.debugInfo("A");
         Intent secondIntent = new Intent();
         // 指定待启动FA的bundleName和abilityName
         Operation operation = new Intent.OperationBuilder()
@@ -139,9 +138,7 @@ public class SecondAbilitySlice extends AbilitySlice implements Component.Clicke
                 .withAbilityName("com.example.myapplication.JSAbility")
                 .build();
         secondIntent.setOperation(operation);
-        LogUtil.debugInfo("B");
         startAbility(secondIntent); // 通过AbilitySlice的startAbility接口实现启动另一个页面
-        LogUtil.debugInfo("c");
         LogUtil.clickInfo("跳转-JsAbility-JS模块");
     }
 

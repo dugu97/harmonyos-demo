@@ -89,12 +89,23 @@
     "js": [
       {
         "pages": [
-          "pages/news/news"
+          "pages/news/news",
+          "pages/index/index"
         ],
         "name": "default",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": true
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default2",
+        "window": {
+          "designWidth": 454,
+          "autoDesignWidth": false
         }
       }
     ]
