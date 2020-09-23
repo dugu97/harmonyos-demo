@@ -22,10 +22,15 @@
                 ohos:background_element="$graphic:button_element"/>
 
         <Button
+                ohos:id="$+id:jump_js"
                 ohos:width="match_content"
-                ohos:height="match_content"
+                ohos:height="match_parent"
+                ohos:text="跳转JSAbility"
+                ohos:text_alignment="center"
                 ohos:weight="1"
-                ohos:margin="5vp"/>
+                ohos:margin="5vp"
+                ohos:auto_font_size="true"
+                ohos:background_element="$graphic:button_element"/>
 
     </DirectionalLayout>
 

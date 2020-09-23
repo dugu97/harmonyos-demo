@@ -65,6 +65,15 @@
         "launchType": "standard"
       },
       {
+        "orientation": "landscape",
+        "formEnabled": false,
+        "permissions": [],
+        "description": "MainAbility_description",
+        "name": "com.example.myapplication.JSAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
         "name": "com.example.myapplication.service.ServiceAbility",
         "type": "service",
         "visible": true
@@ -74,12 +83,18 @@
         "type": "data",
         "visible": true,
         "uri": "dataability://com.example.myapplication.data.NewsDataAbility"
-      },
+      }
+    ],
+    "js": [
       {
-        "name": "com.example.myapplication.ServiceAbility",
-        "icon": "$media:icon",
-        "description": "$string:serviceability_description",
-        "type": "service"
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
       }
     ]
   }
