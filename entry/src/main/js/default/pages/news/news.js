@@ -71,7 +71,7 @@ export default {
         action.messageCode = MEG_CODE_INSERT;
         action.data = news;
         action.abilityType = ABILITY_TYPE_INTERNAL;
-        action.syncOption = ACTION_SYNC;
+        action.syncOption = ACTION_ASYNC;
 
         console.info('A1');
 

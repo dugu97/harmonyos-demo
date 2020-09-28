@@ -63,7 +63,8 @@
         "description": "secondability_description",
         "name": "com.example.myapplication.SecondAbility",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "visible": true
       },
       {
         "orientation": "landscape",
