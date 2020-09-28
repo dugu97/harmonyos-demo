@@ -29,21 +29,6 @@ public class NewsDataProducer extends Thread{
         NewsDataUtil.insertNewsWithDataModel(DataAbilityHelper.creator(context), Uri.parse(NewsDataAbility.AUTHORITY));
 
 //      发送广播通知回调
-        sendInsertFinishEvent();
-    }
-
-    private void sendInsertFinishEvent(){
-        try {
-            Intent intent = new Intent();
-            Operation operation = new Intent.OperationBuilder()
-                    .withAction("com.my.insertFinish")
-                    .build();
-            intent.setOperation(operation);
-            CommonEventData eventData = new CommonEventData(intent);
-            CommonEventManager.publishCommonEvent(eventData);
-        } catch (RemoteException e) {
-//            HiLog.info(LABEL, "publishCommonEvent occur exception.");
-            LogUtil.debugInfo("publishCommonEvent occur exception.");
-        }
+        CommonEventUtil.sendInsertFinishEvent();
     }
 }

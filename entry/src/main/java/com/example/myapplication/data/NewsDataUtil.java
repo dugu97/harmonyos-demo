@@ -24,12 +24,24 @@ public class NewsDataUtil {
         return news;
     }
 
-    public static void insertNews(OrmContext context) {
+    public static boolean insertNews(OrmContext context) {
         News news = new News();
         news.setTitle("新闻标题");
         news.setContent("新闻内容");
         boolean isSuccessed = context.insert(news);
-        isSuccessed = context.flush();
+        if (isSuccessed){
+            return context.flush();
+        }
+        return false;
+    }
+
+    public static boolean insertNews(OrmContext context, News news) {
+        LogUtil.debugInfo("操作插入新闻");
+        boolean isSuccessed = context.insert(news);
+        if (isSuccessed){
+            return context.flush();
+        }
+        return false;
     }
 
     public static void insertNewsWithDataModel(DataAbilityHelper helper, Uri uri) {

@@ -80,6 +80,18 @@
         "visible": true
       },
       {
+
+        "name": "com.example.myapplication.service.ServiceForJsAbility",
+        "type": "service",
+        "visible": true
+      },
+      {
+
+        "name": "com.example.myapplication.service.ServiceForJsInternalAbility",
+        "type": "service",
+        "visible": true
+      },
+      {
         "name": "com.example.myapplication.data.NewsDataAbility",
         "type": "data",
         "visible": true,

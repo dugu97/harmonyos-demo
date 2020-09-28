@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import com.example.myapplication.service.ServiceForJsInternalAbility;
 import com.example.myapplication.util.LogUtil;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.IntentParams;
@@ -13,11 +14,12 @@ public class JSAbility extends AceAbility {
     public void onStart(Intent intent) {
 //        setInstanceName("default2");
         super.onStart(intent);
-
+        ServiceForJsInternalAbility.register(this);
     }
 
     @Override
     public void onStop() {
+        ServiceForJsInternalAbility.deregister();
         super.onStop();
     }
 

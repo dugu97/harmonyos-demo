@@ -1,0 +1,5 @@
+<div class="container">
+    <text class="title" onclick='jumpFoods' focusable="true">
+        {{ $t('strings.hello') }} {{title}}
+    </text>
+</div>
